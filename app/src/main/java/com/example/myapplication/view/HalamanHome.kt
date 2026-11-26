@@ -139,3 +139,55 @@ fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
         }
     }
 }
+
+@Composable
+fun ListSiswa(
+    itemSiswa: List<DataSiswa>,
+    modifier: Modifier = Modifier
+) {
+    LazyColumn(
+        modifier = modifier,
+        contentPadding = PaddingValues(dimensionResource(id = R.dimen.padding_medium)),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
+    ) {
+        items(items = itemSiswa, key = { it.id }) { siswa ->
+            ItemSiswa(
+                siswa = siswa,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable {}
+            )
+        }
+    }
+}
+
+@Composable
+fun ItemSiswa(
+    siswa: DataSiswa,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        modifier = modifier,
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(
+            modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium)),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Row(modifier = Modifier.fillMaxWidth()) {
+                Text(
+                    text = siswa.nama,
+                    style = MaterialTheme.typography.titleLarge
+                )
+            }
+            Text(
+                text = siswa.alamat,
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Text(
+                text = siswa.telpon,
+                style = MaterialTheme.typography.bodyMedium
+            )
+        }
+    }
+}
