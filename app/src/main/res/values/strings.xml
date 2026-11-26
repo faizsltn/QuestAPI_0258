@@ -15,3 +15,7 @@
     <string name="update">Edit</string>
     <string name="detail_siswa">Detail Siswa</string>
     <string name="edit_siswa">Edit Siswa</string>
+    <string name="no">Tidak</string>
+    <string name="yes">Ya</string>
+    <string name="retry">Retry</string>
+    <string name="gagal">Gagal Loading</string>
