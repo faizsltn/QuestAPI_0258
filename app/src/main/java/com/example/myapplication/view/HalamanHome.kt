@@ -80,3 +80,32 @@ fun HomeScreen(
         )
     }
 }
+
+@Composable
+fun HomeBody(
+    statusUiSiswa: StatusUiSiswa,
+    onRetry: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Box(modifier = modifier) {
+        when (statusUiSiswa) {
+            is StatusUiSiswa.Loading -> LoadingScreen(modifier = Modifier.fillMaxSize())
+            is StatusUiSiswa.Error -> ErrorScreen(retryAction = onRetry, modifier = Modifier.fillMaxSize())
+            is StatusUiSiswa.Success -> {
+                if (statusUiSiswa.siswa.isEmpty()) {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(stringResource(R.string.deskripsi_no_iten))
+                    }
+                } else {
+                    ListSiswa(
+                        itemSiswa = statusUiSiswa.siswa,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+            }
+        }
+    }
+}
